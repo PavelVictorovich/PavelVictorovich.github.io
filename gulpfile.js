@@ -64,12 +64,12 @@ gulp.task('styles', function() {
         }))
         .pipe(gulpIf(isDevelopment, sourcemaps.write()))
         .pipe(gulpIf(!isDevelopment, combiner(cssnano(), rev())))
-        .pipe(gulp.dest('docs/styles'))
+        .pipe(gulp.dest('dist/styles'))
         .pipe(gulpIf(!isDevelopment, combiner(rev.manifest('css.json'), gulp.dest('manifest'))));
 });
 
 gulp.task('clean', function() {
-    return del(['docs', 'tmp', 'manifest']);
+    return del(['dist', 'tmp', 'manifest']);
 });
 
 gulp.task('assets', function() {
@@ -80,13 +80,13 @@ gulp.task('assets', function() {
         .pipe(gulpIf(!isDevelopment, revReplace({
             manifest: gulp.src('manifest/webpack.json', {allowEmpty: true})
         })))
-        .pipe(gulp.dest('docs'));
+        .pipe(gulp.dest('dist'));
 });
 
 gulp.task('styles:assets', function() {
     return gulp.src('frontend/styles/**/*.{png,jpg}', {since: gulp.lastRun('styles:assets')})
         .pipe(gulpIf(!isDevelopment, rev()))
-        .pipe(gulp.dest('docs/styles'))
+        .pipe(gulp.dest('dist/styles'))
         .pipe(gulpIf(!isDevelopment, combiner(rev.manifest('assets.json'), gulp.dest('manifest'))));
 });
 
@@ -109,7 +109,7 @@ gulp.task('styles:svg', function() {
                 }
             }
         }))
-        .pipe(gulpIf('*.styl', gulp.dest('tmp/styles'), gulp.dest('docs/styles')));
+        .pipe(gulpIf('*.styl', gulp.dest('tmp/styles'), gulp.dest('dist/styles')));
 });
 
 gulp.task('webpack', function(callback) {
@@ -119,8 +119,8 @@ gulp.task('webpack', function(callback) {
             page2: './frontend/js/page2'
         },
         output:  {
-            path:     __dirname + '/docs/js',
-            docsPath: '/js/',
+            path:     __dirname + '/dist/js',
+            distPath: '/js/',
             filename: isDevelopment ? '[name].js' : '[name]-[chunkhash:10].js'
         },
         watch:   isDevelopment,
@@ -149,7 +149,7 @@ gulp.task('webpack', function(callback) {
                 path:     __dirname + '/manifest',
                 processOutput(assets) {
                     for (let key in assets) {
-                        assets[key + '.js'] = assets[key].js.slice(options.output.docsPath.length);
+                        assets[key + '.js'] = assets[key].js.slice(options.output.distPath.length);
                         delete assets[key];
                     }
                     return JSON.stringify(assets);
@@ -188,16 +188,16 @@ gulp.task('watch', function() {
 });
 
 gulp.task('clean', function() {
-    return del(['docs', 'manifest', 'tmp']);
+    return del(['dist', 'manifest', 'tmp']);
 });
 
 gulp.task('build', gulp.series('clean', gulp.parallel('styles:assets', 'styles', 'webpack'), 'assets'));
 
 gulp.task('serve', function() {
     browserSync.init({
-        server: 'docs'
+        server: 'dist'
     });
-    browserSync.watch('docs/**/*.*').on('change', browserSync.reload);
+    browserSync.watch('dist/**/*.*').on('change', browserSync.reload);
 });
 
 gulp.task('dev', gulp.series('build', gulp.parallel('serve', function() {
