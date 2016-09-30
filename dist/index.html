@@ -9,66 +9,202 @@
     <script src="bundle.js"></script>
 </head>
 <body class="index">
-
-<header class="header-site">
-
-<nav id="menu" class="show-menu">
-    <ul>
-        <li><a href="#">Portfolio</a></li>
-        <li><a href="#">Works</a></li>
-        <li><a href="#">Portfolio</a></li>
-        <li><a href="#">News</a></li>
-        <li><a href="#">Contact</a></li>
-    </ul>
-</nav>
-
-
-<section class="carousel">
-    <div class="carousel-inner">
-        <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden="" checked="checked">
-        <div class="carousel-item">
-            <img src="img/carousel_html5.jpg">
-        </div>
-        <input class="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden="">
-        <div class="carousel-item">
-            <img src="img/carousel_css3.jpg">
-        </div>
-        <input class="carousel-open" type="radio" id="carousel-3" name="carousel" aria-hidden="true" hidden="">
-        <div class="carousel-item">
-            <img src="img/carousel_js.jpg">
-        </div>
-        <label for="carousel-3" class="carousel-control prev control-1">‹</label>
-        <label for="carousel-2" class="carousel-control next control-1">›</label>
-        <label for="carousel-1" class="carousel-control prev control-2">‹</label>
-        <label for="carousel-3" class="carousel-control next control-2">›</label>
-        <label for="carousel-2" class="carousel-control prev control-3">‹</label>
-        <label for="carousel-1" class="carousel-control next control-3">›</label>
-        <ol class="carousel-indicators">
+    <nav class="navigator">
+        <ul>
+            <li class="navigator_btn fa fa-arrow-down"><a href="#portfolio">portfolio</a></li>
+            <li class="navigator_btn fa fa-arrow-down"><a href="#works">works</a></li>
+            <li class="navigator_btn fa fa-arrow-down"><a href="#resume">resume</a></li>
+            <li class="navigator_btn fa fa-arrow-down"><a href="#footer">contact</a></li>
+        </ul>
+    </nav>
+    <header id="portfolio" class="header-site">
+        <section class="carousel">
+            <div class="carousel-inner">
+                <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden="" checked="checked">
+                <div class="carousel-item">
+                    <img src="img/carousel_html5.jpg">
+                </div>
+                <input class="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden="">
+                <div class="carousel-item">
+                    <img src="img/carousel_css3.jpg">
+                </div>
+                <input class="carousel-open" type="radio" id="carousel-3" name="carousel" aria-hidden="true" hidden="">
+                <div class="carousel-item">
+                    <img src="img/carousel_js.jpg">
+                </div>
+                <label for="carousel-3" class="carousel-control prev control-1">‹</label>
+                <label for="carousel-2" class="carousel-control next control-1">›</label>
+                <label for="carousel-1" class="carousel-control prev control-2">‹</label>
+                <label for="carousel-3" class="carousel-control next control-2">›</label>
+                <label for="carousel-2" class="carousel-control prev control-3">‹</label>
+                <label for="carousel-1" class="carousel-control next control-3">›</label>
+                <ol class="carousel-indicators">
+                    <li>
+                        <label for="carousel-1" class="carousel-bullet">•</label>
+                    </li>
+                    <li>
+                        <label for="carousel-2" class="carousel-bullet">•</label>
+                    </li>
+                    <li>
+                        <label for="carousel-3" class="carousel-bullet">•</label>
+                    </li>
+                </ol>
+            </div>
+        </section>
+    </header>
+    <article id="works" class="layout_grid">
+        <ul>
             <li>
-                <label for="carousel-1" class="carousel-bullet">•</label>
+                <div class="layout_item layout_img-html_css">
+                    <div class="layout_info">
+                        <h3>HTML/CSS</h3>
+                        <div class="layout_btn-holder">
+                            <button class="layout_btn fa fa-eye"><a href="#">demo</a></button>
+                            <button class="layout_btn fa fa-github"><a href="#">code</a></button>
+                        </div>
+                    </div>
+                </div>
             </li>
             <li>
-                <label for="carousel-2" class="carousel-bullet">•</label>
+                <div class="layout_item layout_img-ajax">
+                    <div class="layout_info">
+                        <h3>AJAX</h3>
+                        <div class="layout_btn-holder">
+                            <button class="layout_btn fa fa-eye"><a href="#">demo</a></button>
+                            <button class="layout_btn fa fa-github"><a href="#">code</a></button>
+                        </div>
+                    </div>
+                </div>
             </li>
             <li>
-                <label for="carousel-3" class="carousel-bullet">•</label>
+                <div class="layout_item layout_img-dom">
+                    <div class="layout_info">
+                        <h3>DOM</h3>
+                        <div class="layout_btn-holder">
+                            <button class="layout_btn fa fa-eye"><a href="#">demo</a></button>
+                            <button class="layout_btn fa fa-github"><a href="#">code</a></button>
+                        </div>
+                    </div>
+                </div>
             </li>
-        </ol>
+            <li>
+                <div class="layout_item layout_img-null">
+                    <div class="layout_info">
+                        <h3>null</h3>
+                        <div class="layout_btn-holder">
+                            <button class="layout_btn fa fa-eye"><a href="#">demo</a></button>
+                            <button class="layout_btn fa fa-github"><a href="#">code</a></button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <div class="layout_item layout_img-dijkstra">
+                    <div class="layout_info">
+                        <h3>Dijkstra's algorithm</h3>
+                        <div class="layout_btn-holder">
+                            <button class="layout_btn fa fa-eye"><a href="#">demo</a></button>
+                            <button class="layout_btn fa fa-github"><a href="#">code</a></button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="layout_item layout_img-floyd">
+                    <div class="layout_info">
+                        <h3>Floyd-Warshall algorithm</h3>
+                        <div class="layout_btn-holder">
+                            <button class="layout_btn fa fa-eye"><a href="#">demo</a></button>
+                            <button class="layout_btn fa fa-github"><a href="#">code</a></button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="layout_item layout_img-webpack">
+                    <div class="layout_info">
+                        <h3>Webpack config</h3>
+                        <div class="layout_btn-holder">
+                            <button class="layout_btn fa fa-eye"><a href="#">demo</a></button>
+                            <button class="layout_btn fa fa-github"><a href="#">code</a></button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="layout_item layout_img-gulp">
+                    <div class="layout_info">
+                        <h3>Gulp config</h3>
+                        <div class="layout_btn-holder">
+                            <button class="layout_btn fa fa-eye"><a href="#">demo</a></button>
+                            <button class="layout_btn fa fa-github"><a href="#">code</a></button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <div class="layout_item layout_img-backbone">
+                    <div class="layout_info">
+                        <h3>Backbone</h3>
+                        <div class="layout_btn-holder">
+                            <button class="layout_btn fa fa-eye"><a href="#">demo</a></button>
+                            <button class="layout_btn fa fa-github"><a href="#">code</a></button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="layout_item layout_img-react">
+                    <div class="layout_info">
+                        <h3>React</h3>
+                        <div class="layout_btn-holder">
+                            <button class="layout_btn fa fa-eye"><a href="#">demo</a></button>
+                            <button class="layout_btn fa fa-github"><a href="#">code</a></button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="layout_item layout_img-redux">
+                    <div class="layout_info">
+                        <h3>React/Redux</h3>
+                        <div class="layout_btn-holder">
+                            <button class="layout_btn fa fa-eye"><a href="#">demo</a></button>
+                            <button class="layout_btn fa fa-github"><a href="#">code</a></button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="layout_item layout_img-angular">
+                    <div class="layout_info">
+                        <h3>Angular</h3>
+                        <div class="layout_btn-holder">
+                            <button class="layout_btn fa fa-eye"><a href="#">demo</a></button>
+                            <button class="layout_btn fa fa-github"><a href="#">code</a></button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </article>
+
+    <div id="resume" class="resume">
+        <h1>RESUME</h1>
     </div>
-</section>
-</header>
 
-<div class="works">
-    <h1>WORKS</h1>
-</div>
+    <footer id="footer" class="footer-site">
+        <h1>FOOTER</h1>
+    </footer>
 
-<div class="resume">
-    <h1>RESUME</h1>
-</div>
-
-<footer class="footer-site">
-    <h1>FOOTER</h1>
-</footer>
-
-</body>
+    </body>
 </html>
+
+
+<!--
+
+-->
