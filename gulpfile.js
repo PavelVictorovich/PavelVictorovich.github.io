@@ -3,7 +3,6 @@
 const gulp = require('gulp');
 const sourcemaps = require('gulp-sourcemaps');
 const concat = require('gulp-concat');
-const debug = require('gulp-debug');
 const stylus = require('gulp-stylus');
 const del = require('del');
 const browserSync = require('browser-sync').create();
@@ -12,7 +11,6 @@ const svgSprite = require('gulp-svg-sprite');
 const gulpIf = require('gulp-if');
 const cssnano = require('gulp-cssnano');
 const rev = require('gulp-rev');
-const revReplace = require('gulp-rev-replace');
 const notify = require('gulp-notify');
 const combiner = require('stream-combiner2').obj;
 const through2 = require('through2').obj;
@@ -27,37 +25,27 @@ const notifier = require('node-notifier');
 const path = require('path');
 
 
-gulp.task('styles', function() {
+gulp.task('apps', function () {
+    return gulp.src('frontend/apps/**/*.**')
+        .pipe(sourcemaps.init())
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest('dist/apps'));
+});
 
+gulp.task('styles', function() {
     return gulp.src('frontend/styles/index.styl')
         .pipe(sourcemaps.init())
         .pipe(stylus())
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('dist/styles/'));
-
-});
-
-gulp.task('clean', function() {
-
-    return del(['dist', 'tmp', 'manifest']);
-
 });
 
 gulp.task('assets', function() {
-
     return gulp.src('frontend/assets/**/*.*', {since: gulp.lastRun('assets')})
-        .pipe(revReplace({
-            manifest: gulp.src('manifest/css.json', {allowEmpty: true})
-        }))
-        .pipe(revReplace({
-            manifest: gulp.src('manifest/webpack.json', {allowEmpty: true})
-        }))
         .pipe(gulp.dest('dist'));
-
 });
 
 gulp.task('webpack', function(callback) {
-
     let options = {
         context: __dirname + '/frontend',
 
@@ -133,11 +121,10 @@ gulp.task('webpack', function(callback) {
             callback();
         }
     });
-
 });
 
 gulp.task('watch', function() {
-
+    gulp.watch('dist/apps/**/*.**');
     gulp.watch(['frontend/styles/**/*.styl', 'tmp/styles/sprite.styl'], gulp.series('styles'));
     gulp.watch('frontend/assets/**/*.*', gulp.series('assets'));
     gulp.watch('frontend/styles/**/*.{png,jpg}', gulp.series('styles:assets'));
@@ -146,31 +133,25 @@ gulp.task('watch', function() {
 });
 
 gulp.task('clean', function() {
-
     return del(['dist', 'manifest', 'tmp']);
-
 });
 
-gulp.task('build', gulp.series('clean', gulp.parallel('styles', 'webpack'), 'assets'));
+gulp.task('build', gulp.series('clean', 'apps', gulp.parallel('styles', 'webpack'), 'assets'));
 
 gulp.task('serve', function() {
-
     browserSync.init({
         server: 'dist'
     });
     browserSync.watch('dist/**/*.*').on('change', browserSync.reload);
-
 });
 
 gulp.task('dev', gulp.series('build', gulp.parallel('serve', function() {
-
+    gulp.watch('frontend/apps/**/*.**', gulp.series('apps'));
     gulp.watch('frontend/styles/**/*.styl', gulp.series('styles'));
     gulp.watch('frontend/assets/**/*.*', gulp.series('assets'));
-
 })));
 
 gulp.task('lint', function() {
-
     let eslintResults = {};
     let cacheFilePath = process.cwd() + '/tmp/lintCache.json';
 
@@ -207,25 +188,4 @@ gulp.task('lint', function() {
             fs.writeFileSync(cacheFilePath, JSON.stringify((eslintResults)));
         })
         .pipe(eslint.failAfterError());
-});
-
-gulp.task('default', function() {
-    return gulp.src('source/**/*.*')
-        .on('data', function(file) {
-            console.log({
-                contents: file.contents,
-                path:     file.path,
-                cwd:      file.cwd,
-                base:     file.base,
-                relative: file.relative,
-                dirname:  file.dirname,
-                basename: file.basename,
-                stem:     file.stem,
-                extname:  file.extname
-            });
-        })
-        .pipe(gulp.dest(function(file) {
-            return file.extname == '.js' ? 'js' :
-                file.extname == '.css' ? 'css' : 'dest';
-        }));
 });
