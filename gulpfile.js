@@ -26,7 +26,7 @@ const path = require('path');
 
 
 gulp.task('apps', function () {
-    return gulp.src('frontend/apps/**/*.**')
+    return gulp.src('frontend/apps/**/*.**',{read:false})
         .pipe(sourcemaps.init())
         .pipe(sourcemaps.write())
         .pipe(gulp.dest('dist/apps'));

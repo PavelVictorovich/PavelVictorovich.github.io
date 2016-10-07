@@ -1,0 +1,8 @@
+function logout (){
+    localStorage.clear();
+    sessionStorage.clear();
+    window.app.navigate("", {trigger: true});
+}
+
+export default logout;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiIiwic291cmNlcyI6WyJCYWNrYm9uZS9zcmMvaGVscGVycy9sb2dvdXQuanMiXSwic291cmNlc0NvbnRlbnQiOlsiZnVuY3Rpb24gbG9nb3V0ICgpe1xuICAgIGxvY2FsU3RvcmFnZS5jbGVhcigpO1xuICAgIHNlc3Npb25TdG9yYWdlLmNsZWFyKCk7XG4gICAgd2luZG93LmFwcC5uYXZpZ2F0ZShcIlwiLCB7dHJpZ2dlcjogdHJ1ZX0pO1xufVxuXG5leHBvcnQgZGVmYXVsdCBsb2dvdXQ7Il0sImZpbGUiOiJCYWNrYm9uZS9zcmMvaGVscGVycy9sb2dvdXQuanMiLCJzb3VyY2VSb290IjoiL3NvdXJjZS8ifQ==
