@@ -1,68 +1,91 @@
 'use strict';
 
-const gulp = require('gulp');
-const sourcemaps = require('gulp-sourcemaps');
-const concat = require('gulp-concat');
-const stylus = require('gulp-stylus');
-const del = require('del');
-const browserSync = require('browser-sync').create();
-const resolver = require('stylus').resolver;
-const svgSprite = require('gulp-svg-sprite');
-const gulpIf = require('gulp-if');
-const cssnano = require('gulp-cssnano');
-const rev = require('gulp-rev');
-const notify = require('gulp-notify');
-const combiner = require('stream-combiner2').obj;
-const through2 = require('through2').obj;
-const eslint = require('gulp-eslint');
-const fs = require('fs');
-const plumber = require('gulp-plumber');
-const webpackStream = require('webpack-stream');
-const webpack = webpackStream.webpack;
-const gulplog = require('gulplog');
-const AssetsPlugin = require('assets-webpack-plugin');
-const notifier = require('node-notifier');
-const path = require('path');
+const   gulp = require('gulp'),
+        watch = require('gulp-watch'),
+        prefixer = require('gulp-autoprefixer'),
+        uglify = require('gulp-uglify'),
+        sass = require('gulp-sass'),
+        sourcemaps = require('gulp-sourcemaps'),
+        del = require('del'),
+        rigger = require('gulp-rigger'),
+        cssmin = require('gulp-minify-css'),
+        imagemin = require('gulp-imagemin'),
+        pngquant = require('imagemin-pngquant'),
+        browserSync = require("browser-sync"),
+        gulpIf = require('gulp-if'),
+        notify = require('gulp-notify'),
+        combiner = require('stream-combiner2').obj,
+        through2 = require('through2').obj,
+        eslint = require('gulp-eslint'),
+        fs = require('fs'),
+        webpack = require('webpack'),
+        gulplog = require('gulplog'),
+        notifier = require('node-notifier'),
+        path = require('path');
 
+var paths = {
+    build: {
+        html: 'build/',
+        js: 'build/js/',
+        css: 'build/css/',
+        img: 'build/img/',
+        fonts: 'build/fonts/',
+        libs: 'build/libs/'
+    },
+    src: {
+        html: 'src/*.html',
+        js: './src/js/main',
+        style: 'src/style/main.scss',
+        img: 'src/img/**/*.*',
+        fonts: 'src/fonts/**/*.*',
+        libs: 'src/libs/**/*.*'
+    },
+    watch: {
+        html: 'src/**/*.html',
+        js: 'src/js/**/*.js',
+        style: 'src/style/**/*.scss',
+        img: 'src/img/**/*.*',
+        fonts: 'src/fonts/**/*.*',
+        libs: 'src/libs/**/*.*'
+    },
+    clean: './build'
+};
 
-gulp.task('apps', function () {
-    return gulp.src('frontend/apps/**/*.**',{read:false})
-        .pipe(sourcemaps.init())
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('dist/apps'));
+gulp.task('webserver', function () {
+    browserSync.init({
+        server: 'build'
+    });
+    browserSync.watch('build/**/*.*').on('change', browserSync.reload);
 });
 
-gulp.task('styles', function() {
-    return gulp.src('frontend/styles/index.styl')
-        .pipe(sourcemaps.init())
-        .pipe(stylus())
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest('dist/styles/'));
+gulp.task('clean', function () {
+    return del(paths.clean);
 });
 
-gulp.task('assets', function() {
-    return gulp.src('frontend/assets/**/*.*', {since: gulp.lastRun('assets')})
-        .pipe(gulp.dest('dist'));
+gulp.task('html:build', function () {
+    return gulp.src(paths.src.html)
+        .pipe(rigger())
+        .pipe(gulp.dest(paths.build.html));
 });
 
-gulp.task('webpack', function(callback) {
+gulp.task('libs:build', function () {
+    return gulp.src(paths.src.libs)
+        .pipe(gulp.dest(paths.build.libs));
+});
+
+gulp.task('js:build', function (callback) {
+
     let options = {
-        context: __dirname + '/frontend',
-
         entry: [
-            'babel-polyfill',
-            './frontend/js/index'
+            /*'babel-polyfill',*/
+            paths.src.js
         ],
-
         output: {
-            path: path.resolve(__dirname, "dist"),
+            path: path.resolve(__dirname, paths.build.js),
             filename: 'bundle.js',
         },
-
         watch:   true,
-
-        devtool: 'cheap-module-inline-source-map',
-
+        devtool: 'inline-source-map',
         module:  {
             loaders: [{
                 test: /\.js$/,
@@ -73,34 +96,20 @@ gulp.task('webpack', function(callback) {
                 }
             }]
         },
-
         plugins: [
-            new webpack.NoErrorsPlugin()
-        ]
-    };
-
-    options.plugins.push(
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings:     false,
-                unsafe:       true
-            }
-        }),
-        new AssetsPlugin({
-            filename: 'webpack.json',
-            path:     __dirname + '/manifest',
-            processOutput(assets) {
-                for (let key in assets) {
-                    assets[key + '.js'] = assets[key].js.slice(options.output.distPath.length);
-                    delete assets[key];
+            new webpack.NoErrorsPlugin(),
+            new webpack.optimize.UglifyJsPlugin({
+                compress: {
+                    warnings:     false,
+                    unsafe:       true
                 }
-                return JSON.stringify(assets);
-            }
-        })
-    );
-
+            })
+        ],
+        externals: {
+            "jquery": "jQuery"
+        },
+    };
     webpack(options, function(err, stats) {
-
         if (!err) {
             err = stats.toJson().errors[0];
         }
@@ -123,33 +132,49 @@ gulp.task('webpack', function(callback) {
     });
 });
 
-gulp.task('watch', function() {
-    gulp.watch('dist/apps/**/*.**');
-    gulp.watch(['frontend/styles/**/*.styl', 'tmp/styles/sprite.styl'], gulp.series('styles'));
-    gulp.watch('frontend/assets/**/*.*', gulp.series('assets'));
-    gulp.watch('frontend/styles/**/*.{png,jpg}', gulp.series('styles:assets'));
-    gulp.watch('frontend/styles/**/*.svg', gulp.series('styles:svg'));
-
+gulp.task('style:build', function () {
+    return gulp.src(paths.src.style)
+        .pipe(sourcemaps.init())
+        .pipe(sass({
+            includePaths: ['src/style/'],
+            outputStyle: 'compressed',
+            sourceMap: true,
+            errLogToConsole: true
+        }))
+        .pipe(prefixer())
+        .pipe(cssmin())
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest(paths.build.css));
 });
 
-gulp.task('clean', function() {
-    return del(['dist', 'manifest', 'tmp']);
+gulp.task('image:build', function () {
+    return gulp.src(paths.src.img)
+        .pipe(imagemin({
+            progressive: true,
+            svgoPlugins: [{removeViewBox: false}],
+            use: [pngquant()],
+            interlaced: true
+        }))
+        .pipe(gulp.dest(paths.build.img));
 });
 
-gulp.task('build', gulp.series('clean', 'apps', gulp.parallel('styles', 'webpack'), 'assets'));
-
-gulp.task('serve', function() {
-    browserSync.init({
-        server: 'dist'
-    });
-    browserSync.watch('dist/**/*.*').on('change', browserSync.reload);
+gulp.task('fonts:build', function() {
+    return gulp.src(paths.src.fonts)
+        .pipe(gulp.dest(paths.build.fonts));
 });
 
-gulp.task('dev', gulp.series('build', gulp.parallel('serve', function() {
-    gulp.watch('frontend/apps/**/*.**', gulp.series('apps'));
-    gulp.watch('frontend/styles/**/*.styl', gulp.series('styles'));
-    gulp.watch('frontend/assets/**/*.*', gulp.series('assets'));
-})));
+gulp.task('build', gulp.series('clean', gulp.parallel('html:build', 'js:build', 'style:build', 'fonts:build', 'image:build', 'libs:build')));
+
+gulp.task('watch', function(){
+    gulp.watch([paths.watch.html], gulp.series('html:build'));
+    gulp.watch([paths.watch.style], gulp.series('style:build'));
+    gulp.watch([paths.watch.js], gulp.series('js:build'));
+    gulp.watch([paths.watch.img], gulp.series('image:build'));
+    gulp.watch([paths.watch.fonts], gulp.series('fonts:build'));
+    gulp.watch([paths.watch.fonts], gulp.series('libs:build'));
+});
+
+gulp.task('default', gulp.series('build', gulp.parallel('webserver', 'watch')));
 
 gulp.task('lint', function() {
     let eslintResults = {};
@@ -160,7 +185,7 @@ gulp.task('lint', function() {
     } catch (e) {
     }
 
-    return gulp.src('frontend/**/*.js', {read: false})
+    return gulp.src('src/**/*.js', {read: false})
         .pipe(gulpIf(
             function(file) {
                 return eslintResults[file.path] && eslintResults[file.path].mtime == file.stat.mtime.toJSON();
