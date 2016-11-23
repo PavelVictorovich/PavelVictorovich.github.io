@@ -1,0 +1,48 @@
+.navigator {
+  position: fixed;
+  z-index: 101;
+  background: inherit;
+  width: 100%;
+}
+.navigator_btn {
+  border: none;
+  padding: 2%;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  outline: none;
+  position: relative;
+  color: #fff;
+  min-width: 200px;
+  line-height: 20px;
+  font-size: 16px;
+  overflow: hidden;
+  -webkit-transition: all 0.3s;
+}
+.navigator_btn:before {
+  speak: none;
+  position: absolute;
+  line-height: 2.5;
+  font-size: 180%;
+  transition: all 0.3s;
+  left: 140px;
+  top: -100%;
+}
+.navigator_btn a {
+  display: block;
+  margin-top: -100px;
+  padding-top: 100px;
+  text-align: center;
+  transition: all 0.3s;
+  font-size: 20px;
+  color: #ffffff;
+}
+.navigator_btn:hover a {
+  -webkit-transform: translateY(50%);
+  -moz-transform: translateY(50%);
+  -ms-transform: translateY(50%);
+  transform: translateY(50%);
+}
+.navigator_btn:hover:before {
+  top: 0;
+}
