@@ -1,9 +1,0 @@
-import { Model } from 'backbone';
-import api from '../api'
-
-const userModel = Model.extend ({
-    activate: api.activate,
-    deactivate: api.deactivate,
-});
-
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiIiwic291cmNlcyI6WyJCYWNrYm9uZS9zcmMvbW9kZWwvdXNlcnNNb2RlbC5qcyJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBNb2RlbCB9IGZyb20gJ2JhY2tib25lJztcbmltcG9ydCBhcGkgZnJvbSAnLi4vYXBpJ1xuXG5jb25zdCB1c2VyTW9kZWwgPSBNb2RlbC5leHRlbmQgKHtcbiAgICBhY3RpdmF0ZTogYXBpLmFjdGl2YXRlLFxuICAgIGRlYWN0aXZhdGU6IGFwaS5kZWFjdGl2YXRlLFxufSk7XG4iXSwiZmlsZSI6IkJhY2tib25lL3NyYy9tb2RlbC91c2Vyc01vZGVsLmpzIiwic291cmNlUm9vdCI6Ii9zb3VyY2UvIn0=
