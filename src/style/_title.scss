@@ -1,0 +1,19 @@
+.title-page {
+  width: 100%;
+  z-index: 10;
+  position: relative;
+  margin: 0 auto;
+  height: auto;
+  background: #fff;
+  color: #3d3d3d;
+}
+
+.title-nav {
+  max-width: 100%;
+  width: 100%;
+  min-height: 960px;
+  height: auto;
+  position: relative;
+  background: url(../img/Front-end.png) no-repeat fixed;
+  background-size: cover;
+}

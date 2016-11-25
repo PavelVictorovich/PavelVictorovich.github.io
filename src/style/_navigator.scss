@@ -1,48 +1,88 @@
-.navigator {
-  position: fixed;
-  z-index: 101;
-  background: inherit;
+/*		top menu 		*/
+
+.title-page {
+  min-height: 130px;
+  background: #fff;
+  color: #3d3d3d;
+  padding: 0 0 50px 0;
+  height: 960px;
+}
+
+.title-nav .nav-pills {
+  margin-top: 350px;
+}
+
+.nav-pills {
+  background-color: transparent;
+}
+
+.nav-pills a, .nav-pills li.active a {
+  background: rgba(142, 142, 142, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.nav-pills a:hover {
+  background: rgba(142, 142, 142, 0.9) !important;
+}
+
+.nav-pills li a {
+  margin-right: 20px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.nav-pills a i {
+  font-size: 50px;
+  text-align: center;
   width: 100%;
 }
-.navigator_btn {
-  border: none;
-  padding: 2%;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 700;
-  outline: none;
+
+.inner {
+  margin: 0 auto;
   position: relative;
-  color: #fff;
-  min-width: 200px;
-  line-height: 20px;
-  font-size: 16px;
-  overflow: hidden;
-  -webkit-transition: all 0.3s;
+  min-height: 50px;
+  padding: 30px 0;
+  font-size: 18px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
 }
-.navigator_btn:before {
-  speak: none;
-  position: absolute;
-  line-height: 2.5;
-  font-size: 180%;
-  transition: all 0.3s;
-  left: 140px;
-  top: -100%;
+
+.inner {
+  padding-bottom: 0;
 }
-.navigator_btn a {
+
+.inner:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.navbar {
+  height: 75px;
+  z-index: 1000;
+  width: 100%;
+  background: #fff;
+}
+
+.navbar .inner {
+  padding: 0;
+  font-weight: 400;
+  margin: 0 auto;
+}
+
+.nav-btn {
   display: block;
-  margin-top: -100px;
-  padding-top: 100px;
+  float: left;
+  margin: 0 0 0 0;
+  text-decoration: none;
+  font-size: 16px;
+  text-transform: uppercase;
+  padding: 30px 20px;
   text-align: center;
-  transition: all 0.3s;
-  font-size: 20px;
-  color: #ffffff;
+  color: #333;
 }
-.navigator_btn:hover a {
-  -webkit-transform: translateY(50%);
-  -moz-transform: translateY(50%);
-  -ms-transform: translateY(50%);
-  transform: translateY(50%);
-}
-.navigator_btn:hover:before {
-  top: 0;
+
+.navbar .inner a:hover, .navbar .inner a:focus {
+  color: #33CCCC;
 }

@@ -1,0 +1,77 @@
+@import "clearfix";
+@import "../fonts/FontAwesome/scss/font-awesome";
+
+body {
+  background: #fff;
+  font-family: "Lato", Arial, Verdana, serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Lato", Arial, Verdana, serif;
+  font-weight: 100;
+  color: #444649;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+p {
+  color: #939393;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+}
+
+a {
+  text-decoration: none !important;
+  transition: all 0.4s ease 0s;
+  font-family: "Lato", Arial, Verdana, serif;
+  font-weight: 300;
+  outline: 0 !important;
+}
+
+h2 {
+  font-size: 28px;
+}
+
+h6 {
+  font-size: 18px;
+}
+
+.wrapper {
+  width: 100%;
+  z-index: 10;
+  position: relative;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.section {
+  width: 100%;
+  z-index: 10;
+  position: relative;
+  margin: 0 auto;
+  padding: 0 0 20px 0;
+}
+
+.container-fluid {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@import "title";
+@import "navigator";
+@import "resume";
+@import "layout";
+@import "footer";
