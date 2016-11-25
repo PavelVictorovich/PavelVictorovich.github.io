@@ -7,7 +7,6 @@
 
         var optionLocs = [],
             lastScrollTop = 0,
-            menuHeight = $('.navbar').height(),
             nav = $('.navbar'),
             navA = $('.navbar a'),
             myOffset = nav.height();
@@ -19,8 +18,8 @@
 
             if (!$(this).hasClass("extLink")) { $(this).attr('id', id); }
 
-            optionLocs.push(new Array(
-                $(id).position().top - menuHeight,
+            optionLocs.push(Array(
+                $(id).position().top - myOffset,
                 $(id).height() + $(id).position().top, id));
 
             var stickyTop = nav.offset().top;
@@ -31,7 +30,7 @@
 
                 if (scrollTop > stickyTop + myOffset) {
                     nav.addClass('navbar-fixed-top');
-                    $('body').css('padding-top', menuHeight);
+                    $('body').css('padding-top', myOffset);
                 } else {
                     nav.removeClass('navbar-fixed-top');
                     $('body').css('padding-top', '0');
@@ -122,4 +121,10 @@
 
 $(document).ready(function () {
     $('.navbar').navbar();
+    $('.nav').on('click', 'a', function(event) {
+        event.preventDefault();
+        var id = $(this).attr('href'),
+            top = $(id).offset().top;
+        $('body', 'html').animate({scrollTop: top}, 1000);
+    });
 });

@@ -6,12 +6,7 @@ body {
   font-family: "Lato", Arial, Verdana, serif;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1,h2,h3,h4,h5,h6 {
   font-family: "Lato", Arial, Verdana, serif;
   font-weight: 100;
   color: #444649;
@@ -29,7 +24,6 @@ li {
 p {
   color: #939393;
   font-family: 'Open Sans', sans-serif;
-  font-weight: 300;
   font-size: 15px;
 }
 
@@ -62,7 +56,7 @@ h6 {
   z-index: 10;
   position: relative;
   margin: 0 auto;
-  padding: 0 0 20px 0;
+  padding: 50px 0;
 }
 
 .container-fluid {
