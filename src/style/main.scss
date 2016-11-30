@@ -1,15 +1,15 @@
 @import url("../libs/bootstrap/css/bootstrap.min.css");
 @import url("../libs/bootstrap/css/bootstrap-theme.min.css");
 @import "clearfix";
-@import "../fonts/FontAwesome/scss/font-awesome";
+@import "fonts";
 
 body {
   background: #fff;
-  font-family: "Lato", Arial, Verdana, serif;
+  font-family: "Lato Regular", serif;
 }
 
-h1,h2,h3,h4,h5,h6 {
-  font-family: "Lato", Arial, Verdana, serif;
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Lato Regular", serif;
   font-weight: 100;
   color: #444649;
 }
@@ -25,7 +25,7 @@ li {
 
 p {
   color: #939393;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 15px;
 }
 
