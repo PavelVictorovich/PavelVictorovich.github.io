@@ -3,6 +3,8 @@
 @import "clearfix";
 @import "fonts";
 
+@media print { .section{ display: none; } .resume{ display: block; }}
+
 body {
   background: #fff;
   font-family: "Lato Regular", serif;

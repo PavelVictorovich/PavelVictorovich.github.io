@@ -11,20 +11,11 @@
   width: 100%;
 }
 
-.layout_grid:after, .layout_item:before {
-  content: '';
-  display: table;
-}
-
-.layout_grid:after {
-  clear: both;
-}
-
 .layout_grid li {
   width: 250px;
   height: 250px;
   display: inline-block;
-  margin: 30px 15px 30px 15px;
+  margin: 15px;
 }
 
 .layout_item {
