@@ -1,5 +1,5 @@
 .layout {
-  background-color: #da5c2b;
+  background-color: rgb(218, 92, 43);
 }
 
 .layout_grid {
@@ -79,7 +79,7 @@
 
 .layout_info {
   position: absolute;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 1);
   width: inherit;
   height: inherit;
   border-radius: 50%;
@@ -145,4 +145,8 @@
   font-size: 14px;
   margin-left: 5px;
   color: #000000;
+}
+
+@media all {
+
 }

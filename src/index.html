@@ -19,7 +19,6 @@
         <div id="title" class="title-nav">
             <div class="container">
                 <ul class="nav nav-pills nav-justified">
-                    <li><a href="#title"><i class="fa fa-cog"></i>Home</a></li>
                     <li><a href="#resume"><i class="fa fa-user"></i>About me</a></li>
                     <li><a href="#works"><i class="fa fa-picture-o"></i>Portfolio</a></li>
                     <li><a href="#footer"><i class="fa fa-comment"></i>Contact</a></li>
@@ -28,20 +27,20 @@
         </div>
     </header>
 
-    <nav id="resume" class="navbar">
+    <nav id="nav" class="navbar">
         <div class="container">
-            <a href="#" class="nav-btn fa fa-print" onclick="print()">&nbsp&nbspPrint Resume</a>
             <div class="inner pull-right">
                 <a href="#title" class="nav-btn">Home</a>
-                <a href="#resume2" class="nav-btn">About Me</a>
+                <a href="#resume" class="nav-btn">About Me</a>
                 <a href="#works" class="nav-btn">My Works</a>
                 <a href="#footer" class="nav-btn">Contact</a>
             </div>
         </div>
     </nav>
 
-    <div id="resume2" class="section resume">
+    <div id="resume" class="section resume">
         <div class="container">
+            <a href="#" class="nav-btn" onclick="print()"><i class="fa fa-print"></i>&nbsp&nbspPrint Resume</a>
             <div class="col-md-10 col-md-offset-1">
                 <h2>Petryshyn Pavel</h2>
                 <img src="img/Photo.jpg" alt="" align="right">
@@ -241,16 +240,19 @@
     </div>
 
     <footer id="footer" class="section footer-site">
-        <ul class="container">
-            <li><a href="" class="fa fa-vk">&nbsp&nbsp https://vk.com/pavelvictorovich1986</a></li>
-            <li><a href="" class="fa fa-facebook-official">&nbsp&nbsp https://www.facebook.com/PavelVictorovich1986</a>
-            </li>
-            <li><a href="" class="fa fa-linkedin-square">&nbsp&nbsp https://ua.linkedin.com/in/pavelvictorovich</a></li>
-            <li><a href="" class="fa fa-github">&nbsp&nbsp https://github.com/PavelVictorovich</a></li>
-            <li><i class="fa fa-phone" aria-hidden="true">&nbsp&nbsp +380634021668</i>
-                <br><i class="fa fa-phone" aria-hidden="true">&nbsp&nbsp +380502510293</i></li>
-            <li><i class="fa fa-skype" aria-hidden="true">&nbsp&nbsp Tornado86900</i></li>
-        </ul>
+        <div class="container footer-contacts">
+            <ul class="footer-pills contacts-numbers">
+                <li><p class="fa fa-phone" aria-hidden="true">&nbsp&nbsp +380634021668</p></li>
+                <li><p class="fa fa-phone" aria-hidden="true">&nbsp&nbsp +380502510293</p></li>
+                <li><p class="fa fa-skype" aria-hidden="true">&nbsp&nbsp Tornado86900</p></li>
+            </ul>
+            <ul class="footer-pills contacts-socials">
+                <li><a href="https://vk.com/pavelvictorovich1986" class="fa fa-vk"></a></li>
+                <li><a href="https://www.facebook.com/PavelVictorovich1986" class="fa fa-facebook-official"></a></li>
+                <li><a href="https://ua.linkedin.com/in/pavelvictorovich" class="fa fa-linkedin-square"></a></li>
+                <li><a href="https://github.com/PavelVictorovich" class="fa fa-github"></a></li>
+            </ul>
+        </div>
     </footer>
 </div>
 </body>
