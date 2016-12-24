@@ -141,7 +141,18 @@
 }
 
 .layout_btn-holder {
-  margin: 50px 0 0 0;
+  @include resp(xs_small) {
+    margin-top: 0;
+  }
+  @include resp(sm_small) {
+    margin-top: 5px;
+  }
+  @include resp(md_medium) {
+    margin-top: 25px;
+  }
+  @include resp(lg_large) {
+    margin-top: 50px;
+  }
   border-top: 2px solid #333333;
   text-align: center;
 }
