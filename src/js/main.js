@@ -1,5 +1,5 @@
-(function() {
-    $.fn.navbar = function(options) {
+(function () {
+    $.fn.navbar = function (options) {
         var settings = $.extend({
             'scrollSpeed': 1000,
             'mySelector': 'div'
@@ -11,12 +11,16 @@
             navA = $('.navbar a'),
             myOffset = nav.height();
 
-        if (settings.scrollSpeed) { var scrollSpeed = settings.scrollSpeed }
+        if (settings.scrollSpeed) {
+            var scrollSpeed = settings.scrollSpeed
+        }
 
-        return navA.each(function(index) {
+        return navA.each(function (index) {
             var id = $(this).attr('href');
 
-            if (!$(this).hasClass("extLink")) { $(this).attr('id', id); }
+            if (!$(this).hasClass("extLink")) {
+                $(this).attr('id', id);
+            }
 
             optionLocs.push(Array(
                 $(id).position().top - myOffset,
@@ -24,7 +28,7 @@
 
             var stickyTop = nav.offset().top;
 
-            var stickyMenu = function(direction) {
+            var stickyMenu = function (direction) {
 
                 var scrollTop = $(window).scrollTop() + myOffset;
 
@@ -46,7 +50,7 @@
                     } else if (direction == undefined) {
                         $(id).addClass("active");
                     }
-                    $.each(optionLocs, function(i) {
+                    $.each(optionLocs, function (i) {
                         if (id != optionLocs[i][2]) {
                             $(optionLocs[i][2]).removeClass("active");
                         }
@@ -56,7 +60,7 @@
 
             stickyMenu();
 
-            $(window).scroll(function() {
+            $(window).scroll(function () {
                 var st = $(this).scrollTop() + myOffset;
                 if (st > lastScrollTop) {
                     //noinspection JSDuplicatedDeclaration
@@ -76,7 +80,7 @@
                 }
             });
 
-            $(this).on('click', function(e) {
+            $(this).on('click', function (e) {
                 var myOffset = nav.height();
 
                 e.preventDefault();
@@ -85,14 +89,14 @@
 
                 var goTo = $(hash).offset().top - myOffset;
 
-                $("html, body").stop().animate({ scrollTop: goTo }, scrollSpeed);
+                $("html, body").stop().animate({scrollTop: goTo}, scrollSpeed);
 
                 if ($(this).hasClass("extLink")) {
                     return false;
                 }
             });
 
-            $('.intLink').on('click', function(e) {
+            $('.intLink').on('click', function (e) {
                 var myOffset = nav.height();
 
                 e.preventDefault();
@@ -107,7 +111,7 @@
                     var goTo = $(hash).position().top - myOffset * 2;
                 }
 
-                $('html', 'body').stop().animate({ scrollTop: goTo }, scrollSpeed);
+                $('html', 'body').stop().animate({scrollTop: goTo}, scrollSpeed);
 
                 if ($(this).hasClass("extLink")) {
                     return false;
@@ -116,15 +120,19 @@
         });
     };
 
-    $.fn.navbar.defaults = { 'scrollSpeed': 1000, 'mySelector': 'div' };
+    $.fn.navbar.defaults = {'scrollSpeed': 1000, 'mySelector': 'div'};
 })(jQuery);
 
 $(document).ready(function () {
     $('.navbar').navbar();
-    $('.nav').on('click', 'a', function(event) {
+    $('.nav').on('click', 'a', function (event) {
         event.preventDefault();
         var id = $(this).attr('href'),
             top = $(id).offset().top;
         $('body', 'html').animate({scrollTop: top}, 1000);
     });
+    $('.section, .title-nav').height($(window).height());
+    $(window).resize(function () {
+        $('.section, .title-nav').height($(window).height());
+    })
 });

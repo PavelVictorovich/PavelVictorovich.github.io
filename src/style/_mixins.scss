@@ -1,0 +1,15 @@
+$small: 768px;
+$medium: 992px;
+$large: 1200px;
+
+@mixin resp($media) {
+  @if $media == xs_small {    @media only screen and (max-width: $small - 1) { @content; }  }
+  @else if $media == sm_small {    @media only screen and (min-width: $small) and (max-width: $medium - 1) { @content; }  }
+  @else if $media == md_medium {    @media only screen and (min-width: $medium) and (max-width: $large - 1) { @content; }  }
+  @else if $media == lg_large {    @media only screen and (min-width: $large) { @content; }  }
+}
+
+@mixin img_works($img){
+  background: #ffffff url('../img/apps/' + $img);
+  background-size: cover;
+}

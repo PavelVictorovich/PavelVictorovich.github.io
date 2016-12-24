@@ -2,6 +2,7 @@
 @import url("../libs/bootstrap/css/bootstrap-theme.min.css");
 @import "clearfix";
 @import "fonts";
+@import "mixins";
 
 @media print { .section{ display: none; } .resume{ display: block; }}
 

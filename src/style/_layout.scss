@@ -12,10 +12,27 @@
 }
 
 .layout_grid li {
-  width: 250px;
-  height: 250px;
   display: inline-block;
-  margin: 15px;
+  @include resp(xs_small) {
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+  }
+  @include resp(sm_small) {
+    width: 200px;
+    height: 200px;
+    margin: 15px;
+  }
+  @include resp(md_medium) {
+    width: 220px;
+    height: 220px;
+    margin: 15px;
+  }
+  @include resp(lg_large) {
+    width: 250px;
+    height: 250px;
+    margin: 15px;
+  }
 }
 
 .layout_item {
@@ -30,51 +47,51 @@
 }
 
 .layout_img-html_css {
-  background: #ffffff url(../img/apps/HTML-CSS.jpg);
+  @include img_works('HTML-CSS.jpg');
 }
 
 .layout_img-ajax {
-  background: #ffffff url(../img/apps/AJAX.jpg);
+  @include img_works('AJAX.jpg');
 }
 
 .layout_img-dom {
-  background: #ffffff url(../img/apps/DOM.jpg);
+  @include img_works('DOM.jpg');
 }
 
 .layout_img-validation {
-  background: #ffffff url(../img/apps/Validation.png);
+  @include img_works('Validation.png');
 }
 
 .layout_img-dijkstra {
-  background: #ffffff url(../img/apps/Dijkstra.png);
+  @include img_works('Dijkstra.png');
 }
 
 .layout_img-floyd {
-  background: #ffffff url(../img/apps/Floid-Warshall.png);
+  @include img_works('Floid-Warshall.png');
 }
 
 .layout_img-webpack {
-  background: #ffffff url(../img/apps/Webpack.jpg);
+  @include img_works('Webpack.jpg');
 }
 
 .layout_img-gulp {
-  background: #ffffff url(../img/apps/Gulp.png);
+  @include img_works('Gulp.png');
 }
 
 .layout_img-backbone {
-  background: #ffffff url(../img/apps/Backbone.jpg);
+  @include img_works('Backbone.jpg');
 }
 
 .layout_img-react {
-  background: #ffffff url(../img/apps/React.png);
+  @include img_works('React.png');
 }
 
 .layout_img-redux {
-  background: #ffffff url(../img/apps/React-Redux.png);
+  @include img_works('React-Redux.png');
 }
 
 .layout_img-angular {
-  background: #ffffff url(../img/apps/Angular.jpg);
+  @include img_works('Angular.jpg');
 }
 
 .layout_info {
@@ -145,8 +162,4 @@
   font-size: 14px;
   margin-left: 5px;
   color: #000000;
-}
-
-@media all {
-
 }
